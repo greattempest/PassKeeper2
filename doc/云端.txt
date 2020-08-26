@@ -1,3 +1,0 @@
-阿里云 wonders,123
-root Wonders@3721
-passkeeper Wonders,123
