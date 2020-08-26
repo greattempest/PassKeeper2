@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="h-ui/css/H-ui.min.css" th:href="@{h-ui/css/H-ui.min.css}"/>
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.min.css" th:href="@{lib/Hui-iconfont/1.0.8/iconfont.min.css}"/>
+<link rel="stylesheet" type="text/css" href="h-ui.admin/css/H-ui.admin.css" th:href="@{h-ui.admin/css/H-ui.admin.css}"/>
+<link rel="stylesheet" type="text/css" href="h-ui.admin/skin/default/skin.css" id="skin" th:href="@{h-ui.admin/skin/default/skin.css}"/>
+<link rel="stylesheet" type="text/css" href="h-ui.admin/css/style.css" th:href="@{h-ui.admin/css/style.css}"/>
+<!--[if lt IE 9]>
+<link href="h-ui/css/H-ui.ie.css" rel="stylesheet" type="text/css" th:href="@{h-ui/css/H-ui.ie.css}"/>
+<![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<style type="text/css">
+.ui-sortable .panel-header{ cursor:move}
+</style>
+<title>添加帐号/卡片</title>
+</head>
+<body ontouchstart>
+    <article class="page-container">
+        <form action="/savesubject" method="post" class="form form-horizontal" 
+        	autocomplete="off" id="form-subject-add">
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">类型：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="select-box radius">
+                      <select class="select" size="1" name="objtype" id="objtype">
+                        <option value="0" selected>----</option>
+                        <option value="web">网站</option>
+                        <option value="mail">邮箱</option>
+                        <option value="card">银行卡/会员卡</option>
+                        <option value="file">文档</option>
+                      </select>
+                    </span>
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名/卡号：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="objid" id="objid"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="objpass" id="objpass"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">查询密码：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="objquerypass" id="objquerypass"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">手机：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="phone" id="phone"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">邮箱：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="email" id="email"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">提示问题：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="tipquestion" id="tipquestion"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">提示问题答案：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="tipanswer" id="tipanswer"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">网站地址：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="weburl" id="weburl"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>商户名称：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="businame" id="businame"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">额度：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="limits" id="limits"></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3">备注：</label>
+                <div class="formControls col-xs-8 col-sm-9"><textarea cols="" rows="" class="textarea" name="remark" id="remark"  placeholder="备注"></textarea></div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密钥：</label>
+                <div class="formControls col-xs-8 col-sm-9"><input type="text" class="input-text radius" name="userkey" id="userkey"></div>
+            </div>
+                
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
+                </div>
+            </div>
+        </form>
+    </article>
+    <!--_footer 作为公共模版分离出去-->
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js" th:href="@{lib/jquery/1.9.1/jquery.min.js}"></script> 
+    <script type="text/javascript" src="lib/layer/2.4/layer.js" th:href="@{lib/layer/2.4/layer.js}"></script>
+    <script type="text/javascript" src="h-ui/js/H-ui.js" th:href="@{h-ui/js/H-ui.js}"></script> 
+    <script type="text/javascript" src="h-ui.admin/js/H-ui.admin.js" th:href="@{h-ui.admin/js/H-ui.admin.js}"></script> 
+    <!--/_footer 作为公共模版分离出去-->
+
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js" th:href="@{lib/My97DatePicker/4.8/WdatePicker.js}"></script> 
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js" th:href="@{lib/datatables/1.10.0/jquery.dataTables.min.js}"></script> 
+    <script type="text/javascript" src="lib/laypage/1.2/laypage.js" th:href="@{lib/laypage/1.2/laypage.js}"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#form-subect-add").validate({
+                rules:{
+                    objid:{
+                        required:true,
+                        minlength:4,
+                        maxlength:16
+                    },
+                    objpass:{
+                        required:true
+                    },
+                    businame:{
+                        required:true
+                    },
+                },
+                onkeyup:false,
+                focusCleanup:true,
+                success:"valid",
+                submitHandler:function(form){
+                    $(form).ajaxSubmit();
+                }		
+            });
+            
+        });
+        function wait(){
+            var start = new Date().getTime();
+            while(new Date().getTime()<start+1000);
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+        }        
+    </script>
+</body>
+</html>
