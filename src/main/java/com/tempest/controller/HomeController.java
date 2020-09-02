@@ -68,6 +68,8 @@ public class HomeController {
 	
 	@RequestMapping("/savesubject")
 	public String savesubject(@RequestParam Map<String, String> para,HttpSession httpSession,HttpServletRequest request) {
+		long start = new Date().getTime();
+		//System.out.println((new Date().getTime())-start);
 		User user = (User) SecurityUtils.getSubject().getPrincipal();
 		/*Account account = (Account) httpSession.getAttribute("user");
 		//测试用，如果未登录则模拟登录0号用户
@@ -75,6 +77,7 @@ public class HomeController {
 			account=accountService.selectById(0);
 			request.getSession().setAttribute("user", account);
 		}*/
+		//System.out.println((new Date().getTime())-start);
 		String userkey = (para.get("userkey"));
 		Subject subject = new Subject();
 		subject.setUserid(user.getId()+"");
@@ -107,16 +110,16 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		//System.out.println((new Date().getTime())-start);
 		//System.out.println("encode1:"+passbyte);
 		
 		objpass = Code.CODE(passbyte, userkey);
 		objquerypass = Code.CODE(querypassbyte, userkey);
 		subject.setObjpass(objpass);
 		subject.setObjquerypass(objquerypass);
-		
+		//System.out.println((new Date().getTime())-start);
 		subjectService.insert(subject);
-		
+		//System.out.println((new Date().getTime())-start);
 		return "savesubject";
     }
 	

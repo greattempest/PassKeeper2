@@ -1,9 +1,9 @@
 server:
-  port : 7156
+  port : 80
 
 spring:
   datasource:
-    url : jdbc:mysql://139.224.24.220:3306/passkeeper?serverTimezone=UTC
+    url : jdbc:mysql://localhost:3306/passkeeper?serverTimezone=UTC
     username : passkeeper
     password : Wonders,123
     driver-class-name : com.mysql.cj.jdbc.Driver
