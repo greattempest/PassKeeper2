@@ -7,11 +7,6 @@ spring:
     username : passkeeper
     password : Wonders,123
     driver-class-name : com.mysql.cj.jdbc.Driver
-  thymeleaf:
-    cache: false
-    servlet:
-      content-type: text/html
-    mode: LEGACYHTML5
   devtools:
     restart:
       enabled: true  #设置开启热部署
