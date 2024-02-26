@@ -2,17 +2,14 @@ package com.tempest;
 
 public class Test {
 	public static void main(String args[]) {
-		long month=-12000;
-		double r=0.05;
-		double r2=0.04;
-		long save=4000000;
-		int y=0;
-		while(y<50) {
-			save=new Double(save*(1+r)+(month*12)).longValue();
-			month=new Double(month*(1+r2)).longValue();
-			y++;
-			System.out.println("Y:"+y+",S:"+save+",C:"+month);
-			//System.out.println(save);
-		}
+			String text = "浙C.D43915(网约)";
+			String type=text.substring(0, text.indexOf("(") );
+			//if(text.indexOf(".")<0)
+				//text=text.substring(0,2)+"."+text.substring(2);
+			type=type.replace(".", "");
+			//carParams.put("PLATE_NUMBER", text);
+			System.out.println("vehicleno:"+type);
+		
+		
 	}
 }
