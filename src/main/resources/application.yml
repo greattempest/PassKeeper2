@@ -18,10 +18,6 @@ spring:
       password: actuator
       roles: ACTUATOR_ADMIN
 
-mybatis:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.tempest.jdbc.model
-
 management:
   endpoint:
     health:
