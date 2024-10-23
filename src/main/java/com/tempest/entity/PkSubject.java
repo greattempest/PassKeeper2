@@ -77,4 +77,132 @@ public class PkSubject extends BaseEntity {
 	@Column
 	private String updatetime;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getObjecttype() {
+		return objecttype;
+	}
+
+	public void setObjecttype(String objecttype) {
+		this.objecttype = objecttype;
+	}
+
+	public String getObjid() {
+		return objid;
+	}
+
+	public void setObjid(String objid) {
+		this.objid = objid;
+	}
+
+	public String getObjpass() {
+		return objpass;
+	}
+
+	public void setObjpass(String objpass) {
+		this.objpass = objpass;
+	}
+
+	public String getObjquerypass() {
+		return objquerypass;
+	}
+
+	public void setObjquerypass(String objquerypass) {
+		this.objquerypass = objquerypass;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTipquestion() {
+		return tipquestion;
+	}
+
+	public void setTipquestion(String tipquestion) {
+		this.tipquestion = tipquestion;
+	}
+
+	public String getTipanswer() {
+		return tipanswer;
+	}
+
+	public void setTipanswer(String tipanswer) {
+		this.tipanswer = tipanswer;
+	}
+
+	public String getWeburl() {
+		return weburl;
+	}
+
+	public void setWeburl(String weburl) {
+		this.weburl = weburl;
+	}
+
+	public String getBusiname() {
+		return businame;
+	}
+
+	public void setBusiname(String businame) {
+		this.businame = businame;
+	}
+
+	public String getLimits() {
+		return limits;
+	}
+
+	public void setLimits(String limits) {
+		this.limits = limits;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Date getAddtime() {
+		return addtime;
+	}
+
+	public void setAddtime(Date addtime) {
+		this.addtime = addtime;
+	}
+
+	public String getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(String updatetime) {
+		this.updatetime = updatetime;
+	}
+
 }

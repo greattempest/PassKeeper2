@@ -18,11 +18,11 @@ public interface BaseService<T> {
 
 	<s extends T> s saveAndFlush(s entity);
 
-	T get(Long id);
+	T get(String id);
 
 	long count();
 
-	void deleteById(Long id);
+	void deleteById(String id);
 
 	void delete(T entity);
 

@@ -29,7 +29,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 		return null;
 	}
 
-	public T get(Long id) {
+	public T get(String id) {
 		return null;
 	}
 
@@ -37,7 +37,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 		return 0L;
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(String id) {
 
 	}
 
