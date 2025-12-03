@@ -10,54 +10,50 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable{
-	// 创建人
-	@Column(name = "crt_user")
-	private String crtUser;
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 
 	// 创建时间
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "crt_date")
-	private Date crtDate;
+	@Column(name = "addtime")
+	private Date addtime;
 
-	// 更新人
-	@Column(name = "upd_user")
-	private String updUser;
+
 
 	// 更新时间
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Column(name = "upd_date")
-	private Date updDate;
+	@Column(name = "updatetime")
+	private Date updatetime;
 
-	public String getCrtUser() {
-		return crtUser;
+
+
+	public Date getAddtime() {
+		return addtime;
 	}
 
-	public void setCrtUser(String crtUser) {
-		this.crtUser = crtUser;
+
+
+	public void setAddtime(Date addtime) {
+		this.addtime = addtime;
 	}
 
-	public Date getCrtDate() {
-		return crtDate;
+
+
+	public Date getUpdatetime() {
+		return updatetime;
 	}
 
-	public void setCrtDate(Date crtDate) {
-		this.crtDate = crtDate;
+
+
+	public void setUpdatetime(Date updatetime) {
+		this.updatetime = updatetime;
 	}
 
-	public String getUpdUser() {
-		return updUser;
-	}
-
-	public void setUpdUser(String updUser) {
-		this.updUser = updUser;
-	}
-
-	public Date getUpdDate() {
-		return updDate;
-	}
-
-	public void setUpdDate(Date updDate) {
-		this.updDate = updDate;
-	}
-
+	
 }

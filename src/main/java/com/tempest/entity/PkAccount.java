@@ -15,7 +15,7 @@ public class PkAccount extends BaseEntity{
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 使用数据库自增
-	private Long id;
+	private String id;
 
 	// 用户ID
 	@Column

@@ -10,7 +10,7 @@ import com.tempest.entity.BaseEntity;
 public interface BaseService<T> {
 	List<T> findAll();
 
-	List<T> findAllById(Iterable<Long> ids);
+	List<T> findAllById(Iterable<String> ids);
 
 	<s extends T> List<s> saveAll(Iterable<s> entities);
 

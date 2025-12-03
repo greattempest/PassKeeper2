@@ -1,6 +1,6 @@
 package com.tempest.entity;
 
-import java.util.Date;
+import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +12,16 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "pk_subject") // 表名称
 public class PkSubject extends BaseEntity {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // 使用数据库自增
-	private Long id;
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) // 使用数据库自增
+	@GeneratedValue(strategy = GenerationType.UUID) //改成自动生成UUID
+	private String id;
 
 	// 用户ID
 	@Column
@@ -23,7 +29,7 @@ public class PkSubject extends BaseEntity {
 
 	// 类型
 	@Column
-	private String objecttype;
+	private String objtype;
 
 	// 对象ID
 	@Column
@@ -68,20 +74,25 @@ public class PkSubject extends BaseEntity {
 	// 备注
 	@Column
 	private String remark;
+	
+	//状态标志
+	@Column	
+	private String removed;
 
-	// 新增时间
-	@Column
-	private Date addtime;
 
-	// 更新时间
-	@Column
-	private String updatetime;
+	public String getRemoved() {
+		return removed;
+	}
 
-	public Long getId() {
+	public void setRemoved(String removed) {
+		this.removed = removed;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -94,11 +105,11 @@ public class PkSubject extends BaseEntity {
 	}
 
 	public String getObjecttype() {
-		return objecttype;
+		return objtype;
 	}
 
-	public void setObjecttype(String objecttype) {
-		this.objecttype = objecttype;
+	public void setObjecttype(String objtype) {
+		this.objtype = objtype;
 	}
 
 	public String getObjid() {
@@ -189,20 +200,6 @@ public class PkSubject extends BaseEntity {
 		this.remark = remark;
 	}
 
-	public Date getAddtime() {
-		return addtime;
-	}
-
-	public void setAddtime(Date addtime) {
-		this.addtime = addtime;
-	}
-
-	public String getUpdatetime() {
-		return updatetime;
-	}
-
-	public void setUpdatetime(String updatetime) {
-		this.updatetime = updatetime;
-	}
+	
 
 }

@@ -25,6 +25,8 @@ public class AESUtil {
 	 * @return A base64 encoded string containing the encrypted data.
 	 */
 	public static String encrypt(String password, String clearText) throws Exception {
+		if(clearText==null || clearText.equals(""))
+			return "";
 		final byte[] pass = password.getBytes(US_ASCII);
 		final byte[] salt = (new SecureRandom()).generateSeed(8);
 		final byte[] inBytes = clearText.getBytes(UTF_8);

@@ -1,15 +1,19 @@
 package com.tempest;
 
+import com.tempest.math.AES256Util;
+import com.tempest.math.AESUtil;
+import com.tempest.math.Code;
+
 public class Test {
 	public static void main(String args[]) {
-			String text = "浙C.D43915(网约)";
-			String type=text.substring(0, text.indexOf("(") );
-			//if(text.indexOf(".")<0)
-				//text=text.substring(0,2)+"."+text.substring(2);
-			type=type.replace(".", "");
-			//carParams.put("PLATE_NUMBER", text);
-			System.out.println("vehicleno:"+type);
-		
-		
+		String pass = "122,126,66,71,13,125,96,91,112,119,66,83,126,7,121,64,6,64,67,92,74,83,8,11,";
+		try {
+			String objpass = Code.DECODE(pass, "PassKeeper");
+			objpass = AESUtil.decrypt(AES256Util.AesPass,objpass);
+			System.out.println(objpass);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 }

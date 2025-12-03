@@ -1,6 +1,5 @@
 package com.tempest.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
@@ -11,13 +10,20 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.tempest.entity.PkUser;
 import com.tempest.shiro.User;
 import com.tempest.util.RandomValidateCodeUtil;
 import com.tempest.util.Response;
 import com.tempest.util.ResponseUtil;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/login")
@@ -47,16 +53,27 @@ public class LoginController {
     }
 	
 	@RequestMapping("/getlogin")
-    public Response getlogin(User user) {
+    public Response getlogin(@RequestBody PkUser user) {
+
+		ServletRequestAttributes requestAttributes = ServletRequestAttributes.class.
+		        cast(RequestContextHolder.getRequestAttributes());
+		    HttpServletRequest contextRequest = requestAttributes.getRequest(); 
         //添加用户认证信息
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
-                user.getUserName(),
-                user.getPassword()
+        		user.getUsername(),
+        		user.getPassword()
         );
         try {
             //进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
+            PkUser loginUser = (PkUser) subject.getPrincipal();
+            //这里做的不是登录成功标记，而且我们页面上需要使用登陆者的信息，所以我们保存登陆者的信息
+            HttpSession session = contextRequest.getSession();
+            session.setAttribute("user",loginUser);
+            /*测试用，设置user对象的属性*/
+            //user.setId("1");
+            //user.setRoles(null);
 //            subject.checkRole("admin");
 //            subject.checkPermissions("query", "add");
         } catch (AuthenticationException e) {
@@ -80,7 +97,7 @@ public class LoginController {
      * 生成验证码
      */
     @GetMapping("/getVerify")
-    public void getVerify(HttpServletRequest request, HttpServletResponse response) {
+    public void getVerify(javax.servlet.http.HttpServletRequest request, HttpServletResponse response) {
         try {
             response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
             response.setHeader("Pragma", "No-cache");//设置响应头信息，告诉浏览器不要缓存此内容

@@ -16,7 +16,7 @@ public class PkUser extends BaseEntity {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 使用数据库自增
-    private Long id;
+    private String id;
     
     //账号
     @Column
@@ -57,4 +57,92 @@ public class PkUser extends BaseEntity {
     //mac
     @Column
     private String mac;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRelname() {
+		return relname;
+	}
+
+	public void setRelname(String relname) {
+		this.relname = relname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public Date getRegisterdate() {
+		return registerdate;
+	}
+
+	public void setRegisterdate(Date registerdate) {
+		this.registerdate = registerdate;
+	}
+
+	public Date getLogindate() {
+		return logindate;
+	}
+
+	public void setLogindate(Date logindate) {
+		this.logindate = logindate;
+	}
+
+	public Integer getErrorcount() {
+		return errorcount;
+	}
+
+	public void setErrorcount(Integer errorcount) {
+		this.errorcount = errorcount;
+	}
+
+	public Date getLockdate() {
+		return lockdate;
+	}
+
+	public void setLockdate(Date lockdate) {
+		this.lockdate = lockdate;
+	}
+
+	public String getMac() {
+		return mac;
+	}
+
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
 }
