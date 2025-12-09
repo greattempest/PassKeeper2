@@ -1,5 +1,6 @@
 package com.tempest.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +43,27 @@ public class UserService extends BaseServiceImpl<PkUser> {
 		List<PkUser> userList = repo.findAll(exam);
 		if(userList!=null && userList.size()>0) {
 			user = userList.get(0);
-			if(password == null || password.equals("")|| !password.equals(user.getPassword()))
+			String userPassword=user.getPassword();
+			userPassword=RSAUtil.decryptByPrivateKey(userPassword);
+			if(user.getLockdate()!=null && new Date().getTime()<(user.getLockdate().getTime()+900*1000))
+				return user;
+			if(password == null || password.equals("")|| !password.equals(userPassword)) {
+				if(user.getErrorcount()==null)
+					user.setErrorcount(1);
+				else
+					user.setErrorcount(user.getErrorcount()+1);
+				if(user.getErrorcount()>3) {
+					user.setLockdate(new Date());
+				}
+				repo.save(user);
 				return null;
+			}
 		}else {
 			return null;
 		}
+		user.setErrorcount(0);
+		user.setLogindate(new Date());
+		repo.save(user);
 		return user;
 		
 	}

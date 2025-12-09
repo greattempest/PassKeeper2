@@ -56,8 +56,9 @@ public class PasskeeperRealm extends AuthorizingRealm {
         }
         try{
         	user = userService.login(token.getUsername(), password);
-        	if(user==null || user.getId()==null || user.getId().equals(""))
+        	if(user==null || user.getId()==null || user.getId().equals("")) {
         		throw new AuthenticationException();  
+        	}
             //return new SimpleAuthenticationInfo(USER_NAME, DigestUtils.md5DigestAsHex(PASSWORD.getBytes()),getName());  
             return new SimpleAuthenticationInfo(user, password,getName());  
         }catch(Exception e){

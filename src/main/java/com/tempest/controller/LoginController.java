@@ -1,5 +1,7 @@
 package com.tempest.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
@@ -52,6 +54,16 @@ public class LoginController {
         return "login";
     }
 	
+	@RequestMapping("/logout")
+    public Response logout() {
+		ServletRequestAttributes requestAttributes = ServletRequestAttributes.class.
+		        cast(RequestContextHolder.getRequestAttributes());
+		    HttpServletRequest contextRequest = requestAttributes.getRequest(); 
+            HttpSession session = contextRequest.getSession();
+            session.removeAttribute("user");
+        return ResponseUtil.success();
+    }
+	
 	@RequestMapping("/getlogin")
     public Response getlogin(@RequestBody PkUser user) {
 
@@ -68,14 +80,12 @@ public class LoginController {
             //进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
             PkUser loginUser = (PkUser) subject.getPrincipal();
+            if(loginUser.getLockdate()!=null && loginUser.getLockdate().getTime()>(new Date().getTime()-900*1000))
+            	return ResponseUtil.error("账号已锁定，请稍后重试！");
             //这里做的不是登录成功标记，而且我们页面上需要使用登陆者的信息，所以我们保存登陆者的信息
+            
             HttpSession session = contextRequest.getSession();
             session.setAttribute("user",loginUser);
-            /*测试用，设置user对象的属性*/
-            //user.setId("1");
-            //user.setRoles(null);
-//            subject.checkRole("admin");
-//            subject.checkPermissions("query", "add");
         } catch (AuthenticationException e) {
             e.printStackTrace();
             return ResponseUtil.error("账号或密码错误！");
